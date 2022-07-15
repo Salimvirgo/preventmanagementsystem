@@ -1,0 +1,18 @@
+{"outboundSMSMessageRequest":{ 
+    "address":[ 
+    "tel:+23276450406", "tel:+23278161701"
+    ],
+    "senderAddress":"tel:Orange-VRA",
+    "outboundSMSTextMessage":{ 
+    "message":"Hello User,\n\n You request for vehicle has been assigned to John Kamara with vehicle registration AER 123.\n\n Please notify the fleet coordinator upon returning from your trip."
+    },
+    "clientCorrelator":"123456",
+    "receiptRequest":{ 
+    "notifyURL":"http://172.25.177.113:8080/app/notifications/DeliveryInfoNotification",
+    "callbackData":"request1"
+    },
+    "senderName":"Orange Vehicle-Request"
+    }
+}
+
+    

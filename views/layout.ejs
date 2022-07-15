@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+
+    <% if ((typeof isAdmin !='undefined' ) && isAdmin==1) { %>
+        <%- include('admin/admin-navigationbar') %>
+        
+            <section class="home">
+                <h4 class="text">
+                    <%-typeof pageTitle !='undefined' ? pageTitle : '' %>
+                </h4>
+                <%- body %>
+            </section>
+            <% } else if((typeof isLineManager !='undefined' ) && isLineManager==2) { %>
+                <%- body %>
+            </section>
+            <% } else { %>
+
+                <%- include('partials/navbar') %>
+
+
+                    <%- body %>
+
+
+
+                        <%}%>
+
+
+
+
+                            <%- include('partials/footer') %>

@@ -1,0 +1,65 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 p-3">
+            <%- include('../partials/messages') %>
+                <form action="/admin/departments" method="POST" id="">
+                    <div class="form-group">
+                        <label for="">Department Name</label>
+                        <input type="text" name="departmentName" id="departmentName" class="form-control"
+                            placeholder="Department Name" />
+                        <small id="departmentHelper" class="text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Select The Head of Department</label>
+                        <select class="form-control" name="hod" id="hod">
+                            <option selected value="">Select The Head of Department</option>
+                            <% if (typeof users !='undefined' ) { %>
+                                <% users.forEach(user=> { %>
+                                    <option value="<%- user.userId %>">
+                                        <%- user.fullname %>
+                                    </option>
+                                    <% }) %>
+                                        <% } %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-info mb-3">Save Department</button>
+                </form>
+        </div>
+
+
+
+        <div class="col-lg-7">
+            <h3 class="py-3 display-4">Departments</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="">Department Name</th>
+                        <th scope="col" class="">Head of Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof depts !==undefined ) { %>
+                        <% depts.forEach(dept=> { %>
+                            <tr>
+                                <td>
+                                    <%= dept.deptname %>
+                                </td>
+                                <td>
+                                    <%= dept.fullname %>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-delete-dept"
+                                        data-id="<%= dept.deptId %>">Delete</button>
+                                    <button class="btn btn-info btn-update-dept"
+                                        data-id="<%= dept.deptId %> ">Edit</button>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

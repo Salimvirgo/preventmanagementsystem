@@ -1,0 +1,35 @@
+<div class="row mt-5">
+    <div class="col-lg-4 m-lg-auto">
+        <div class="card card-body">
+            <%- include ('partials/messages') %>
+            <h4 class="m3-4 text-center">Enter your e-mail to reset your password</h4>
+            <hr />
+            <form action="/forgetpass" class="form" method="POST">
+
+                <!--Third Form Row-->
+                <div class="form-row mb-1">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Username or Email </label>
+                            <input type="text" name="email" id="email" class="form-control"
+                                value="<%- typeof email != 'undefined' ? email : "" %>"
+                                placeholder="example@example.com" />
+                        </div>
+                    </div>
+                </div>
+                <!--End of Third form row -->
+
+               
+
+                <div class="form-group">
+                    <button type="submit" id="submit" class="btn btn-secondary btn-block btn-login mt-3">
+                        Send Link
+                    </button>
+                </div>
+            </form>
+            <!--End of Form-->
+
+ 
+        </div>
+    </div>
+</div>

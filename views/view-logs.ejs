@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <h3 class="py-4 mb-0 display-3">Your Request History</h3>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Date Requested</th>
+                    <th scope="col" class="text-center">Dept. Date</th>
+                    <th scope="col" class="text-center">Dept. Time</th>
+                    <th scope="col" class="text-center">Return Date</th>
+                    <th scope="col" class="text-center">Return Time</th>
+                    <th scope="col" class="text-center">Purpose</th>
+                    <th scope="col" class="text-center">Passengers</th>
+                    <th scope="col" class="text-center">Status</th>
+                    <!-- <th scope="col" class="text-center">Action</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <% if (userRequests !==undefined) { %>
+                    <% userRequests.forEach(request=> { %>
+                        <tr class="text-center">
+                            <td>
+                                <%= request.requestDate %>
+                            </td>
+                            <td>
+                                <%= request.departureDate %>
+                            </td>
+                            <td>
+                                <%= request.departureTime %>
+                            </td>
+                            <td>
+                                <%= request.returnDate %>
+                            </td>
+                            <td>
+                                <%= request.returnTime %>
+                            </td>
+                            <td>
+                                <%= request.tripPurpose %>
+                            </td>
+                            <td>
+                                <%= request.numberOfPassengers %>
+                            </td>
+                            <td>
+                                <%= request.requestStatus %>
+                            </td>
+                            <!-- <td>
+                                <a href="/request/single/<%= request.requestId%>" class="btn btn-info">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                            </td> -->
+                        </tr>
+                        <% }) %>
+                            <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

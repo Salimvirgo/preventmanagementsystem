@@ -1,0 +1,108 @@
+<div class="container-fluid border" style="margin-top: 40px;">
+    <div class="row">
+        <div class="col-lg-10 ml-auto">
+            <div class="row mt-5 mb-3">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card driver-card mt-hover-none">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between">
+                                <i class="fa fa-user fa-3x text-danger" aria-hidden="true"></i>
+                                <div class="text-right text-white">
+                                    <h5>Users</h5>
+                                    <h5><%- typeof numberOfUser != 'undefined'? numberOfUser: "0" %></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card driver-card mt-hover-none">
+                        <div class="card-body p-4 ">
+                            <div class="d-flex justify-content-between">
+                                <i class="fa fa-info-circle fa-3x text-danger" aria-hidden="true"></i>
+                                <div class="text-right text-white">
+                                    <h5>New Request</h5>
+                                    <h5><%- typeof numberOfReq != 'undefined'? numberOfReq: "0" %></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card driver-card mt-hover-none">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between">
+                                <i class="fa fa-user fa-3x text-danger" aria-hidden="true"></i>
+                                <div class="text-right text-white">
+                                    <h5>Drivers</h5>
+                                    <h5>50</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card driver-card mt-hover-none">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between">
+                                <i class="fa fa-car fa-3x text-danger" aria-hidden="true"></i>
+                                <div class="text-right text-white">
+                                    <h5>Vehicles</h5>
+                                    <h5><%- typeof numberOfvehicles != 'undefined'? numberOfvehicles: "0" %> </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 ml-auto">
+            <div class="row mt-3 mb-3">
+                <div class="col-md-12 p-3">
+                    <h3 class="py-2 text-center mb-0 display-5">List of Vehicle Requests</h3>
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">User</th>
+                                <th scope="col" class="text-center">Dept.</th>
+                                <!-- <th scope="col" class="text-center">Request Date</th> -->
+                                <!-- <th scope="col" class="text-center">Request Time</th> -->
+                                <th scope="col" class="text-center">Departure Date</th>
+                                <th scope="col" class="text-center">Departure Time</th>
+                                <th scope="col" class="text-center">Return Date</th>
+                                <th scope="col" class="text-center">Return Time</th>
+                                <th scope="col" class="text-center">Purpose</th>
+                                <th scope="col" class="text-center">Passengers</th>
+                                <th scope="col" class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (typeof requests != 'undefined') { %>
+                            <% requests.forEach(r => { %>
+                            <tr>
+                                <td scope="col" class="text-center"><a href="" class="btn btn-info btn-block "><%- r.fullname %></a> </td>
+                                <td scope="col" class="text-center"><%- r.deptname %> </td>
+                                <!-- <td scope="col" class="text-center"><%- r.requestDate %> </td> -->
+                                <td scope="col" class="text-center"><%- r.departureDate %> </td>
+                                <td scope="col" class="text-center"><%- r.departureTime %> </td>
+                                <td scope="col" class="text-center"><%- r.returnDate %> </td>
+                                <td scope="col" class="text-center"><%- r.returnTime %> </td>
+                                <td scope="col" class="text-center"><%- r.tripPurpose %> </td>
+                                <td scope="col" class="text-center"><%- r.numberOfPassengers %> </td>
+                                <td scope="col" class="text-center"><span class="badge badge-warning badge-pill w-100 p-2"><%- r.requestStatus %>
+                                    </span></td>
+                            </tr>
+                            <% }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

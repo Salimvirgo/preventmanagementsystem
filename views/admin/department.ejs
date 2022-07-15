@@ -1,0 +1,98 @@
+
+   
+      
+          <!-- <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-9 p-0 mt-3 mb-2"> -->
+              
+ <div class="container-fluid">
+    <div class="row">
+        
+            <div class="col-md-4 p-md-6">
+                <%- include('../partials/messages') %>
+                <div class="card px-4 pt-4 pb- mt-1 mb-2 bg-light">
+                    <form action="/admin/departments" method="POST" id="frmSaveDepartment">
+                        <h4 class="display-6 text-dark">Create New Department</h4>
+                        <div class="form-group">
+                            <label for="">Department Name</label>
+                            <input type="text" name="departmentName" id="departmentName" class="form-control"
+                                placeholder="Department Name" />
+                            <small id="department-error" class="text-muted"></small>
+                        </div>
+    
+                        <button type="submit" class="btn btn-success mb-4 col-12">Save Department</button>
+                    </form>
+                </div>
+                <div class="card px-4 pt-4 pb- mt-1 mb-2 bg-light">
+                    <form id="frmAssignDepartmentHead" class="mt-md-6">
+                        <h4 class="display-6 pt-my-3 text-dark">Assign HOD</h4>
+                        <div class="form-group">
+                            <label for="">Department</label>
+                            <select class="form-control" name="departmentId" id="departmentId" required>
+                                <option selected value="">Select Department</option>
+                                <% if (typeof depts !='undefined' ) { %>
+                                    <% depts.forEach(dept=> { %>
+                                        <option value="<%- dept.deptId %>">
+                                            <%- dept.deptname %>
+                                        </option>
+                                        <% }) %>
+                                            <% } %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Select Head of Department</label>
+                            <select class="form-control" name="hodId" id="hodId" required>
+                                <option selected value="">Select The Head of Department</option>
+                                <% if (typeof users !='undefined' ) { %>
+                                    <% users.forEach(user=> { %>
+                                        <option value="<%- user.userId %>">
+                                            <%- user.fullname %>
+                                        </option>
+                                        <% }) %>
+                                            <% } %>
+                            </select>
+                        </div>
+    
+                        <button type="submit" class="btn btn-success mb-3 col-12">Assign Head of Department</button>
+                    </form>
+                </div>
+            </div>
+       
+        
+
+        <div class="col-lg-8 p-md-5">
+            <div class="card px-4 pt-4 pb- mt-1 mb-2 bg-light">
+                <h4 class="py-3 display-5">Heads Of Departments</h4>
+                <table class="table table-hover table-info">
+                    <thead>
+                        <tr>
+                            <th scope="col">Department Name</th>
+                            <th scope="col">Head of Department</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (typeof hods !==undefined ) { %>
+                            <% hods.forEach(hod=> { %>
+                                <tr>
+                                    <td>
+                                        <%= hod.deptname.toUpperCase() %>
+                                    </td>
+                                    <td>
+                                        <%= hod.fullname %>
+                                    </td>
+                                    <td>
+                                        <button data-deptid="<%= hod.deptId %>"
+                                            class="btn btn-info btnEditDepartment">Edit</button>
+                                        <button data-deptid="<%= hod.deptId %>"
+                                            class="btn btn-danger btnDeleteDepartment">Delete</button>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,55 @@
+<div class="row mt-5">
+    <div class="col-lg-4 m-lg-auto">
+        <div class="card card-body">
+            <%- include ('partials/messages') %>
+            <h4 class="m3-4 text-center">Reset Password</h4>
+            <hr />
+            <form action="/resetpass" class="form" method="POST">
+
+                <!--Third Form Row-->
+                <div class="form-row mb-1">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="Password" aria-describedby="helpId"
+                                        value="<%- typeof user != 'undefined' ? user.password : "" %>">
+                                    <small class="text-muted"></small>
+				                    <span>Password must be 8 characters or more</span>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Third form row -->
+
+                <!--Fourth Row -->
+                <div class="form-row mb-1">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Confirm Password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword"
+                                class="form-control" placeholder="Confirm Password" aria-describedby="helpId"
+                                value="<%- typeof user != 'undefined' ? user.confirmPassword : "" %>">
+                            <small id="helpId" class="text-muted validationError"></small>
+                            <span>Both passwords must match.</span>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="">Confirm New Password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+                                placeholder="" />
+				
+                        </div> -->
+                    </div>
+                </div>
+                <!--End of fourth Row-->
+
+                <div class="form-group">
+                    <button type="submit" id="submit" class="btn btn-secondary btn-block btn-login mt-3">
+                        Reset New Password
+                    </button>
+                </div>
+            </form>
+            <!--End of Form-->
+
+        </div>
+    </div>
+</div>

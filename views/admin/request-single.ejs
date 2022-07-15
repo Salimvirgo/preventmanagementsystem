@@ -1,0 +1,309 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 px-5">
+            <!-- Modal -->
+            <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Reason For Rejecting Request</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form action="/admin/reject/request/<%-r.requestId%>" method="post">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="rejectReason" id=""
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-block">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF REJECT MODAL -->
+
+
+
+            <!-- APPROVAL Modal -->
+            <div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">ASSIGN VEHICLE</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="frmApproveRequest" data-reqId="<%- typeof r != 'undefined' ? r.requestId : "" %>">
+                                <div class="form-group">
+                                    <% if (typeof availableVehicles !='undefined' ) { %>
+                                        <% if (availableVehicles.length <=0) { %>
+                                            <h3>No Vehicles available for now</h3>
+                                            <% } else {%>
+                                                <label for="">Select an Available Vehicle</label>
+                                                <select class="form-control" name="vehicleId" id="vehicleId">
+                                                    <option value="" selected disabled>Please Select Vehicle</option>
+                                                    <% availableVehicles.forEach(vehicle=> { %>
+                                                        <option value="<%= vehicle.vehicleId %>">
+                                                            <%= vehicle.regNumber %> &nbsp; <%= vehicle.deptname %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                <button type="submit" class="btn btn-success btn-block mt-3">Assign
+                                                    Vehicle</button>
+                                                <% } 
+                                             %>
+
+
+                                        <%}
+                                    %>
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF APPROVAL MODAL -->
+
+            <!-- REASSIGN VEHICLE MODAL -->
+            <div class="modal fade" id="reAssignModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">RE-ASSIGN ANOTHER VEHICLE</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/admin/update/request/<%= r.requestId %>" method="POST">
+                                <div class="form-group">
+                                    <% if (typeof availableVehicles !='undefined' ) { %>
+                                        <% if (availableVehicles.length <=0) { %>
+                                            <h3>No Vehicles available for now</h3>
+                                            <% } else {%>
+                                                <label for="">Select an Available Vehicle</label>
+                                                <select class="form-control" name="vehicleId">
+                                                    <option value="" selected disabled>Please Select Vehicle</option>
+                                                    <% availableVehicles.forEach(vehicle=> { %>
+                                                        <option value="<%= vehicle.vehicleId %>">
+                                                            <%= vehicle.regNumber %> &nbsp; <%= vehicle.deptname %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                <button type="submit" class="btn btn-success btn-block mt-3">Assign
+                                                    Vehicle</button>
+                                                <% } %>
+
+
+                                                    <%}%>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF REASSIGN MODAL -->
+             <!-- UNASSIGN VEHICLE MODAL -->
+             <div class="modal fade" id="unAssignModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+             aria-hidden="true">
+             <div class="modal-dialog" role="document">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h5 class="modal-title">UNASSIGN VEHICLE FROM A REQUEST</h5>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                         </button>
+                     </div>
+                     <div class="modal-body">
+                         <form action="/admin/unassign/request/<%= r.requestId %>" method="POST">
+                             <div class="form-group">
+                                             <button type="submit" class="btn btn-success btn-block mt-3">UnAssign
+                                                 Vehicle</button>
+                
+
+                             </div>
+
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- END OF UNASSIGN MODAL -->
+
+            <div class="col-md-6">
+                <!-- <h1 class="display-5 text-center py-2">Request Details</h1> -->
+
+                <%- include('../partials/messages') %>
+                    <form class="mb-5">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Requestor Fullname</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.fullname : "" %>" />
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Department</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.deptname : "" %>" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Request Date</label>
+                                    <input type="text" disabled class="form-control"
+                                        value="<%- typeof r != 'undefined' ? r.requestDate : "" %>" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Request Time</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.requestTime : "" %>" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Event Title</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.eventTitle : "" %>" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Event Date</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.eventDate : "" %>" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Event Type</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.eventType : "" %>" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Event Venue</label>
+                                    <input type="type" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.returnTime : "" %>" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Media Type</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.tripPurpose : "" %>" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Number Of Media Personnel</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.numberOfMediaPersonnel : "" %>" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Event Budget</label>
+                                    <input type="text" class="form-control" disabled
+                                        value="<%- typeof r != 'undefined' ? r.eventBudget : "" %>" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Request Status</label>
+                                    <input type="text" class="form-control" disabled
+                                    value="<%- typeof r != 'undefined' ? r.requestStatus : "" %>" />
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-row">
+                            <% if (r.requestStatus==="APPROVED" ) { %>
+                                <div class="col-md-6">
+                                    <!-- Button trigger modal -->
+                                    <!-- <button type="button" class="btn btn-warning btn-block" data-toggle="modal"
+                                        data-target="#reAssignModal">
+                                        Reassign Vehicle
+                                    </button> -->
+                                    
+                                <div class="col-md-6">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                                        data-target="#rejectModal">
+                                        Reject Request
+                                    </button>
+                                </div>
+                                <% } else if(r.requestStatus==="REJECTED" ) { %>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+                                        data-target="#approvalModal">
+                                        Approve Request
+                                    </button>
+                                    <% }else if (r.requestStatus==="PENDING" ) { %>
+                                        <!-- Approve modal button trigger -->
+                                        <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+                                            data-target="#approvalModal">
+                                            Approve Request
+                                        </button>
+
+                                        <!-- REject Modal button trigger -->
+                                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                                            data-target="#rejectModal">
+                                            Reject Request
+                                        </button>
+                                        <%} %>
+
+
+
+                        </div>
+                    </form>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>

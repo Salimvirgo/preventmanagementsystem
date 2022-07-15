@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-12 p-3">
+                    <h3 class="py-3 display-3 text-uppercase">New Requests</h3>
+                    <table class="table table table-hover table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class="text-center">User</th>
+                                <th scope="col" class="text-center">Dept.</th>
+                                <!-- <th scope="col" class="text-center">Request Date</th> -->
+                                <!-- <th scope="col" class="text-center">Request Time</th> -->
+                                <th scope="col" class="text-center">Departure Date</th>
+                                <th scope="col" class="text-center">Departure Time</th>
+                                <th scope="col" class="text-center">Return Date</th>
+                                <th scope="col" class="text-center">Return Time</th>
+                                <th scope="col" class="text-center">Purpose</th>
+                                <th scope="col" class="text-center">Passengers</th>
+                                <th scope="col" class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (typeof requests != 'undefined') { %>
+                            <% requests.forEach(r => { %>
+                            <tr>
+                                <td scope="col" class="text-center"><a href="/admin/request-single/<%- r.requestId %> "
+                                        class="btn btn-info btn-block "><%- r.fullname %></a> </td>
+                                <td scope="col" class="text-center"><%- r.deptname %> </td>
+                                <!-- <td scope="col" class="text-center"><%- r.requestDate %> </td> -->
+                                <td scope="col" class="text-center"><%- r.departureDate %> </td>
+                                <td scope="col" class="text-center"><%- r.departureTime %> </td>
+                                <td scope="col" class="text-center"><%- r.returnDate %> </td>
+                                <td scope="col" class="text-center"><%- r.returnTime %> </td>
+                                <td scope="col" class="text-center"><%- r.tripPurpose %> </td>
+                                <td scope="col" class="text-center"><%- r.numberOfPassengers %> </td>
+                                <td scope="col" class="text-center"><span
+                                        class="badge badge-warning badge-pill w-100 p-2"><%- r.requestStatus %> </span>
+                                </td>
+                            </tr>
+                            <% }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

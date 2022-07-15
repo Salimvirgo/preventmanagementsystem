@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-4 px-3 py-5">
+            <%- include('../partials/messages') %>
+                <form id="frmDriver">
+                    <div class="form-group">
+                        <label for="driverName">Driver Name</label>
+                        <input type="text" name="driverName" id="driverName" class="form-control"
+                            placeholder="Drivers Name" required
+                            value="<%= typeof driver != 'undefined' ? driver.driverName : "" %> " />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="driverId">Driver ID</label>
+                                <input type="text" name="driverId" id="driverId" class="form-control"
+                                    placeholder="Driver's ID" required
+                                    value="<%= typeof driver != 'undefined' ? driver.driverId : "" %> " />
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="vehicleRegNumber">Driver's Vehicle</label>
+                                <select class="form-control" name="vehicleRegNumber" id="vehicleRegNumber" required>
+                                    <option selected disabled>Select Vehicle</option>
+                                    <% if (typeof vehicles !='undefined' ) { %>
+                                        <% vehicles.forEach(v=> { %>
+                                            <option value="<%- v.vehicleId %>">
+                                                <%- v.regNumber %> &nbsp; <%- v.model %>
+                                            </option>
+                                            <% }) %>
+                                                <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="driverPhone">Driver's Phone Number</label>
+                        <input type="tel" name="driverPhone" id="driverPhone" class="form-control"
+                            placeholder="Driver's Phone Number" required
+                            value="<%= typeof driver != 'undefined' ? driver.phoneNumber : "" %> " />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="driverEmail">Driver's Email <small>(if any)</small></label>
+                                <input type="email" name="driverEmail" id="driverEmail" class="form-control"
+                                    placeholder="Driver's Email"
+                                    value="<%= typeof driver != 'undefined' ? driver.email : "" %> " />
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Driver's Status</label>
+                                <select class="form-control" name="driverStatus" id="driverStatus">
+                                    <option selected value="Active">Active</option>
+                                    <option value="Inactive">InActive</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block">Save Driver</button>
+                </form>
+        </div>
+        <!-- /Col-md-5 -->
+
+
+        <div class="col-md-8 px-2 py-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Driver Name</th>
+                        <th>Driver ID</th>
+                        <th>Vehicle Number</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof drivers !=='undefined' ) { %>
+                        <% drivers.forEach(driver=> { %>
+
+                            <tr>
+                                <td>
+                                    <%= driver.driverName %>
+                                </td>
+                                <td>
+                                    <%= driver.driverId %>
+                                </td>
+                                <td>
+                                    <%= driver.regNumber %>
+                                </td>
+                                <td>
+                                    <%= driver.phoneNumber %>
+                                </td>
+                                <td>
+                                    <%= driver.driverStatus %>
+                                </td>
+                                <td>
+                                    <button data-driverid="<%= driver.driverId %> " class="btn btn-info">Edit</button>
+                                    <button data-driverid="<%= driver.driverId %> "
+                                        class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- /row -->
+    </div>
+</div>
+<!-- /Container-fluid -->
