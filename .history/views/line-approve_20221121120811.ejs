@@ -1,0 +1,303 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="/post-request"
+    ><img src="/images/orangelogo.png" width="30" height="30" alt=""
+  /></a>
+  <button
+    class="navbar-toggler ml-auto"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <% if ((typeof isLineManager !='undefined' ) && isLineManager==2){ %>
+
+      <a class="navbar-brand" href="/logout"
+        ><img src="/images/avatar.svg" width="30" height="30" alt="" /><small
+          >&nbsp;logout</small
+        ></a
+      >
+      <li class="nav-item dropdown px-3">
+        <!-- <a href="" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a> -->
+        <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="">Logout</a>
+                    </div> -->
+      </li>
+
+      <% } %>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row my-5">
+        <div class="col-md-4 col-sm-6 mb-3">
+          <div class="card driver-card mt-hover-none">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between">
+                <i
+                  class="fa fa-info-circle fa-3x text-danger"
+                  aria-hidden="true"
+                ></i>
+                <div class="text-right text-white">
+                  <h5>Line Manager Approval Page</h5>
+                  <!-- <h5>
+                                      <%- typeof numberOfReq !='undefined' ? numberOfReq: "0" %>
+                                  </h5> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="dashboard-card pt-4 pb-3 mt-1 mb-2 bg-light">
+      <div class="col-lg-12">
+        <div class="row mt-3 mb-3 ml-auto">
+          <div class="col-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  data-toggle="tab"
+                  class="nav-link active show"
+                  href="#pending"
+                  >Pending
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a data-toggle="tab" class="nav-link" href="#accepted"
+                  >Approved
+                </a>
+              </li>
+              <li class="nav-item">
+                <a data-toggle="tab" class="nav-link" href="#rejected"
+                  >Rejected
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content mt-3" id="myTabContent">
+              <!-- PENDIND TAB -->
+              <div id="pending" class="tab-pane fade active show">
+                <!-- <h3 class="my-4">List of Pending Vehicle Requests</h3> -->
+                <table class="table table-striped" id="pendingRequestsTable">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="text-center">User</th>
+                      <th scope="col" class="text-center">Dept.</th>
+                      <th scope="col" class="text-center">Event Title</th>
+                      <th scope="col" class="text-center">Date</th>
+                      <th scope="col" class="text-center">Venue</th>
+                      <th scope="col" class="text-center">Media Type</th>
+                      <th scope="col" class="text-center"># of Print</th>
+                      <th scope="col" class="text-center"># of Radio</th>
+                      <th scope="col" class="text-center"># of TV</th>
+                      <th scope="col" class="text-center">Budget</th>
+                      <th scope="col" class="text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (typeof requests !='undefined' ) { %> <%
+                    requests.forEach(r=> { %> <% if (r.requestStatus=="PENDING"
+                    ) { %>
+                    <tr>
+                      <td scope="col" class="text-center">
+                        <a
+                          href="/lineapprovesingle/<%- r.requestId %> "
+                          class="btn btn-info btn-block"
+                        >
+                          <%- r.fullname %>
+                        </a>
+                      </td>
+                      <td scope="col" class="text-center"><%- r.deptname %></td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventTitle %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventDate %>
+                      </td>
+                      <!-- <td scope="col" class="text-center">
+                                                        <%- r.eventType %>
+                                                    </td> -->
+                      <td scope="col" class="text-center">
+                        <%- r.eventVenue %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.mediaType %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.numberOfPrint %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.numberOfRadio %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.numberOfTv %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventBudget %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <span class="badge badge-warning badge-pill w-100 p-2">
+                          <%- r.requestStatus %>
+                        </span>
+                      </td>
+                    </tr>
+                    <% } %> <% }) %> <% } %>
+                  </tbody>
+                </table>
+              </div>
+              <!-- END OF PENDING TAB -->
+
+              <!-- APPROVED TAB -->
+              <div id="accepted" class="tab-pane fade">
+                <!-- <h2 class="py-3 mb-0 display-3">List of Approved Vehicle Requests</h2> -->
+                <table
+                  class="table table-striped mt-2"
+                  id="acceptedRequestsTable"
+                >
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="text-center">User</th>
+                      <th scope="col" class="text-center">Dept.</th>
+                      <th scope="col" class="text-center">Event Title</th>
+                      <th scope="col" class="text-center">Date</th>
+
+                      <th scope="col" class="text-center">Venue</th>
+                      <th scope="col" class="text-center">Media Type</th>
+                      <th scope="col" class="text-center"># of Print</th>
+                      <th scope="col" class="text-center"># of Radio</th>
+                      <th scope="col" class="text-center"># of TV</th>
+                      <th scope="col" class="text-center">Budget</th>
+                      <th scope="col" class="text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (typeof requests !='undefined' ) { %> <%
+                    requests.forEach(r=> { %> <% if (r.requestStatus=="APPROVED"
+                    ) { %>
+                    <tr>
+                      <td scope="col" class="text-center">
+                        <a
+                          href="/lineapprovesingle/<%- r.requestId %> "
+                          class="btn btn-info btn-block"
+                        >
+                          <%- r.fullname %>
+                        </a>
+                      </td>
+                      <td scope="col" class="text-center"><%- r.deptname %></td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventTitle %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventDate %>
+                      </td>
+                      <!-- <td scope="col" class="text-center">
+                                                            <%- r.eventType %>
+                                                        </td> -->
+                      <td scope="col" class="text-center">
+                        <%- r.eventVenue %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.mediaType %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.numberOfMedia %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventBudget %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <span class="badge badge-success badge-pill w-100 p-2">
+                          <%- r.requestStatus %>
+                        </span>
+                      </td>
+                    </tr>
+                    <% } %> <% }) %> <% } %>
+                  </tbody>
+                </table>
+              </div>
+              <!-- //END OF APPROVED TAB -->
+
+              <!-- REJECTED TAB -->
+              <div id="rejected" class="tab-pane fade">
+                <table class="table table-stripped" id="rejectRequestsTable">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="text-center">User</th>
+                      <th scope="col" class="text-center">Dept.</th>
+                      <th scope="col" class="text-center">Event Title</th>
+                      <th scope="col" class="text-center">Event Date</th>
+                      <th scope="col" class="text-center">Type Of Event</th>
+                      <th scope="col" class="text-center">Venue</th>
+                      <th scope="col" class="text-center">Media Type</th>
+                      <th scope="col" class="text-center"># of Media</th>
+                      <th scope="col" class="text-center">Budget</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (typeof requests !='undefined' ) { %> <%
+                    requests.forEach(r=> { %> <% if (r.requestStatus=="REJECTED"
+                    ) { %>
+                    <tr>
+                      <td scope="col" class="text-center">
+                        <a
+                          href="/lineapprovesingle/<%- r.requestId %> "
+                          class="btn btn-info btn-block"
+                        >
+                          <%- r.fullname %>
+                        </a>
+                      </td>
+                      <td scope="col" class="text-center"><%- r.deptname %></td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventTitle %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventDate %>
+                      </td>
+                      <!-- <td scope="col" class="text-center">
+                                                            <%- r.eventType %>
+                                                        </td> -->
+                      <td scope="col" class="text-center">
+                        <%- r.eventVenue %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.mediaType %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.numberOfMedia %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <%- r.eventBudget %>
+                      </td>
+                      <td scope="col" class="text-center">
+                        <span class="badge badge-warning badge-pill w-100 p-2">
+                          <%- r.requestStatus %>
+                        </span>
+                      </td>
+                    </tr>
+                    <% } %> <% }) %> <% } %>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /END OF REJECTED TAB -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

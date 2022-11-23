@@ -1,57 +1,58 @@
-<div class="row">
+<div class="container-fluid">
+  <div>
+    <a
+      class="btn btn-success btn-sm d-none d-sm-inline-block my-2"
+      role="button"
+      id=""
+      href="/post-request"
+      ><i class="fa fa-arrow-left text-white-50" aria-hidden="true"></i
+      >&nbsp;Back</a
+    >
+  </div>
+
+  <div class="row">
     <div class="col-md-10 mx-auto">
-        <h3 class="py-4 mb-0 display-3">Your Request History</h3>
-        <table class="table table-hover table-striped">
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">Date Requested</th>
-                    <th scope="col" class="text-center">Dept. Date</th>
-                    <th scope="col" class="text-center">Dept. Time</th>
-                    <th scope="col" class="text-center">Return Date</th>
-                    <th scope="col" class="text-center">Return Time</th>
-                    <th scope="col" class="text-center">Purpose</th>
-                    <th scope="col" class="text-center">Passengers</th>
-                    <th scope="col" class="text-center">Status</th>
-                    <!-- <th scope="col" class="text-center">Action</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <% if (userRequests !==undefined) { %>
-                    <% userRequests.forEach(request=> { %>
-                        <tr class="text-center">
-                            <td>
-                                <%= request.requestDate %>
-                            </td>
-                            <td>
-                                <%= request.departureDate %>
-                            </td>
-                            <td>
-                                <%= request.departureTime %>
-                            </td>
-                            <td>
-                                <%= request.returnDate %>
-                            </td>
-                            <td>
-                                <%= request.returnTime %>
-                            </td>
-                            <td>
-                                <%= request.tripPurpose %>
-                            </td>
-                            <td>
-                                <%= request.numberOfPassengers %>
-                            </td>
-                            <td>
-                                <%= request.requestStatus %>
-                            </td>
-                            <!-- <td>
-                                <a href="/request/single/<%= request.requestId%>" class="btn btn-info">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </a>
-                            </td> -->
-                        </tr>
-                        <% }) %>
-                            <% } %>
-            </tbody>
+      <h3 class="py-4 mb-0 display-4">Your Request History</h3>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush" id="usersTable">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col" class="text-center">Date Requested</th>
+              <th scope="col" class="text-center">Event Title</th>
+              <th scope="col" class="text-center">Venue</th>
+              <th scope="col" class="text-center">Media Type</th>
+              <!-- <th scope="col" class="text-center"># of Print</th>
+              <th scope="col" class="text-center"># of Radio</th>
+              <th scope="col" class="text-center"># of TV</th> -->
+              <th scope="col" class="text-center">Budget</th>
+              <th scope="col" class="text-center">Status</th>
+              <th scope="col" class="text-center">Preview</th>
+              <!-- <th scope="col" class="text-center">Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <% if (userRequests !==undefined) { %> <%
+            userRequests.forEach(request=> { %>
+            <tr class="text-center">
+              <td><%= request.eventDate %></td>
+              <td><%= request.eventTitle %></td>
+              <td><%= request.eventVenue %></td>
+              <td><%= request.mediaType %></td>
+              <td><%= request.eventBudget %></td>
+              <td><%= request.requestStatus %></td>
+              <td>
+                <a
+                  href="/request/single/<%= request.requestId%>"
+                  class="btn btn-primary"
+                >
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+            <% }) %> <% } %>
+          </tbody>
         </table>
+      </div>
     </div>
+  </div>
 </div>

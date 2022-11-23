@@ -1,0 +1,66 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+  <div class="main-content">
+    <!-- <div class="container mt-2"> -->
+      <!-- Table -->
+      
+      <div class="row" style="margin: 10px;">
+
+        <div class="col">
+          <div class="card shadow p-1">
+            <div class="card-header border-0">
+              <h3 class="mb-0 ml-auto">User Feedback table</h3>
+            </div>
+            <div class="table-">
+              <table class="table align-items-center table-flush" id="filterResultTable">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" >FeedbackId</th>
+                    <th scope="col" >Fullname</th>
+                    <th scope="col" >Department</th>
+                    <th scope="col" >Feedback Date</th>
+                    <th scope="col" >Feedback Time</th>
+                    <th scope="col" >User Feedback</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof feedbacks !='undefined' ) { %>
+                        <% feedbacks.forEach(f=> { %>
+                            <tr>
+                                <td scope="col" class="text-center">
+                                    <%- f.feedbackId %>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <%- f.fullname %>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <%- f.deptname %>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <%- f.feedbackDate %>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <%- f.feedbackTime %>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <%- f.userFeedback %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } %>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Dark table -->
+     
+    </div>
+  </div>
+  
+
+
+

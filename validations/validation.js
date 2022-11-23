@@ -245,12 +245,12 @@ exports.PRRequestValidationRules = () => {
 
     body("mediaType").not().isEmpty().withMessage("Please select a media type"),
 
-    body("numberOfMedia")
+    body("numberOfPrint")
       .not()
       .isEmpty()
-      .withMessage("Please provide number of media personnel")
+      .withMessage("Please provide number of Print personnel")
       .isNumeric()
-      .withMessage("number of media personels must be a numric value"),
+      .withMessage("number of Print personnels must be a numeric value"),
 
     body("eventBudget")
       .not()

@@ -1,0 +1,77 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+  <div class="main-content">
+    <!-- <div class="container mt-2"> -->
+      <!-- Table -->
+      
+      <div class="row" sty>
+
+        <div class="col">
+          <div class="card shadow p-2">
+            <div class="card-header border-0">
+              
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush" id="filterResultTable">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" class="text-center">User</th>
+                    <th scope="col" class="text-center">Dept.</th>
+                    <th scope="col" class="text-center">Event Title</th>
+                    <th scope="col" class="text-center">Event Date</th>
+                    <th scope="col" class="text-center">Type Of Event</th>
+                    <th scope="col" class="text-center">Venue</th>
+                    <th scope="col" class="text-center">Media Type</th>
+                    <th scope="col" class="text-center"># of Media</th>
+                    <th scope="col" class="text-center">Budget</th>
+                  </tr>
+                </thead>
+                <tbody id="filterResult">
+                    <% if (typeof requests !='undefined' ) { %>
+                        <% requests.forEach(r=> { %>
+                            <tr>
+                              <td scope="col" class="text-center">
+                                <%- r.fullname %>
+                            </td>
+                        <td scope="col" class="text-center">
+                            <%- r.deptname %>
+                        </td>
+                       
+                        <td scope="col" class="text-center">
+                            <%- r.eventTitle %>
+                        </td>
+                        <td scope="col" class="text-center">
+                            <%- r.eventDate %>
+                        </td>
+                        <td scope="col" class="text-center">
+                            <%- r.eventType %>
+                        </td>
+                        <td scope="col" class="text-center">
+                            <%- r.eventVenue %>
+                        </td>
+                        <td scope="col" class="text-center">
+                            <%- r.mediaType %>
+                        </td>
+                        <td scope="col" class="text-center">
+                            <%- r.numberOfMedia %>
+                        </td>
+                        <td scope="col" class="text-center">
+                            <%- r.eventBudget %>
+                        </td>
+                            </tr>
+                            <% }) %>
+                                <% } %>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Dark table -->
+     
+    </div>
+  </div>
+
+

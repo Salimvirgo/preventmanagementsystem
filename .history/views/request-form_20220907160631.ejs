@@ -1,0 +1,308 @@
+<div class="container-fluid">
+  <div>
+    <a
+      class="btn btn-success btn-sm d-none d-sm-inline-block my-2"
+      role="button"
+      id=""
+      href="/post-request"
+      ><i class="fa fa-arrow-left text-white-50" aria-hidden="true"></i
+      >&nbsp;Back</a
+    >
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+      <div class="card px-4 pt-4 pb-0 mt-1 mb-1">
+        <h2 id="heading">PR Media Request Form</h2>
+        <p>
+          Ensure all form fields are completed before clicking
+          <strong>next</strong>
+        </p>
+
+        <%- include('partials/messages') %>
+        <form id="frmSubmitRequest" method="post">
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <!-- <li class="active" id="personal"><strong>Personal</strong></li> -->
+            <li class="active" id="event"><strong>Event</strong></li>
+            <li id="media"><strong>Media</strong></li>
+            <!-- <li id="preview"><strong>Preview</strong></li> -->
+            <!-- <li id="confirm"><strong>Finish</strong></li> -->
+          </ul>
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <br />
+
+          <!-- fieldsets -->
+          <!-- <fieldset id="personal">
+                      <div class="form-card">
+                          <div class="row">
+                              <div class="col-7">
+                                  <h2 class="fs-title">Personal Information:</h2>
+                              </div>
+                              <div class="col-5">
+                                  <h2 class="steps">Step 1 - 4</h2>
+                              </div>
+                          </div> 
+                          <label class="fieldlabels">Fullname: *</label>
+                          <input type="text" name="requestorName" id="requestorName" class="form-control" placeholder=""
+                                  aria-describedby="helpId" disabled value="<%- typeof fullname != 'undefined' ? fullname : "" %>" />
+                          <label class="fieldlabels">Email: *</label> 
+                          <input type="email" name="email" id="email" placeholder="" class="form-control" disabled value="<%- typeof email != 'undefined' ? email : "" %>" /> 
+                          <label class="fieldlabels">Username: *</label> 
+                          <input type="text" name="username" id="username" placeholder="" class="form-control" disabled value="<%- typeof username != 'undefined' ? username : "" %>" />  
+                          <label class="fieldlabels">Department: *</label> 
+                          <input type="text" name="department" id="dept" class="form-control" disabled
+                                  value="<%- typeof deptname != 'undefined' ? deptname : "" %>" />
+                      </div> <input type="button" name="next" class="next action-button" value="Next" />
+                  </fieldset> -->
+          <fieldset id="event">
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Event Information:</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">Fullname: *</label>
+              <input type="text" name="requestorName" id="requestorName"
+              class="form-control" placeholder="" aria-describedby="helpId"
+              disabled value="<%- typeof fullname != 'undefined' ? fullname : ""
+              %>" />
+              <label class="fieldlabels">Event Title: *</label>
+              <input
+                type="text"
+                class="form-control"
+                name="eventTitle"
+                id="eventTitle"
+                placeholder="Event Title"
+              />
+              <label class="fieldlabels">Event Date: *</label>
+              <input
+                type="datetime-local"
+                class="form-control"
+                name="eventDate"
+                id="eventDate"
+                class="form-control"
+              />
+              <label class="fieldlabels">Type Of Event: *</label>
+              <input
+                type="text"
+                class="form-control"
+                name="eventType"
+                id="eventType"
+                placeholder="Event Type"
+              />
+              <label class="fieldlabels">Venue: *</label>
+              <input
+                type="text"
+                class="form-control"
+                name="venue"
+                id="venue"
+                placeholder="event venue."
+              />
+            </div>
+            <input
+              type="button"
+              name="next"
+              class="next action-button"
+              value="Next"
+            />
+            <input
+              type="button"
+              name="previous"
+              class="previous action-button-previous"
+              value="Previous"
+            />
+          </fieldset>
+          <fieldset id="media">
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Media Information:</h2>
+                </div>
+                <!-- <div class="col-5">
+                                  <h2 class="steps">Step 3 - 4</h2>
+                              </div> -->
+              </div>
+
+              <label class="fieldlabels">Media Type: *</label>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="mediatype"
+                  id="print"
+                  value="Print"
+                />
+                <label class="form-check-label">Print</label>
+              </div>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="mediatype"
+                  id="radio"
+                  value="Radio"
+                />
+                <label class="form-check-label">Radio</label>
+              </div>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="mediatype"
+                  id="television"
+                  value="Television"
+                />
+                <label class="form-check-label">Television</label>
+              </div>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="mediatype"
+                  id="digital"
+                  value="Digital"
+                />
+                <label class="form-check-label">Digital </label>
+              </div>
+              <label class="fieldlabels"
+                >Number of Print Personnel Required: *</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Number of print Personnel"
+                name="numberOfPrint"
+                id="numberOfPrint"
+                min="1"
+                max="50"
+                required
+              />
+              <label class="fieldlabels"
+                >Number of Radio Personnel Required: *</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Number of radio Personnel"
+                name="numberOfRadio"
+                id="numberOfRadio"
+                min="1"
+                max="50"
+                required
+              />
+              <label class="fieldlabels"
+                >Number of Television Personnel Required: *</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Number of Tv Personnel"
+                name="numberOfTv"
+                id="numberOfTv"
+                min="1"
+                max="50"
+                required
+              />
+              <label class="fieldlabels">Funding: *</label>
+
+              <select name="fund" id="funds">
+                <option value="Self-Funding (Department)">
+                  Self-Funding (Department)
+                </option>
+                <option value="Funded by Public Relations">
+                  Funded by Public Relations
+                </option>
+              </select>
+              <br />
+              <label class="fieldlabels">Available Budget: *</label>
+              <input
+                type="text"
+                name="budget"
+                id="budget"
+                placeholder="Available Budget"
+              />
+            </div>
+            <button type="submit" class="next action-button">Submit</button>
+            <input
+              type="button"
+              name="previous"
+              class="previous action-button-previous"
+              value="Previous"
+            />
+          </fieldset>
+          <!-- <fieldset id="media">
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Preview:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 4 - 5</h2>
+                            </div>
+                        </div> 
+                        <div>
+                            <table class="table table-stripped" id="">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="text-center">Full Name</th>
+                                        <th scope="col" class="text-center">Department</th>
+                                        <th scope="col" class="text-center">Event Title</th>
+                                        <th scope="col" class="text-center">Preview</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="filterResult">
+                                    
+                                                <td scope="col" class="text-center">
+                                                   
+                                                </td>
+                                                <td scope="col" class="text-center">
+                                                    
+                                                </td>
+                                                <td scope="col" class="text-center">
+                                                    
+                                                </td>
+                                                <td scope="col" class="text-center">
+                                                   <a href=""><i class="fa fa-eye"></i></a> 
+                                                </td>
+                                            </tr>
+                                           
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        
+                    </div><button type="submit" class="next action-button">Finish</button> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset> -->
+          <!-- <fieldset>
+                      <div class="form-card">
+                          <div class="row">
+                              <div class="col-7">
+                                  <h2 class="fs-title">Finish:</h2>
+                              </div>
+                              <div class="col-5">
+                                  <h2 class="steps">Step 4 - 4</h2>
+                              </div>
+                          </div> <br><br>
+                          <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                          <div class="row justify-content-center">
+                              <div class="col-2"><a href="/post-request"><img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </a> </div>
+                          </div> <br><br>
+                          <div class="row justify-content-center">
+                              <div class="col-7 text-center">
+                                  <h5 class="purple-text text-center">You Have Successfully Submitted Your Request</h5>
+                              </div>
+                          </div>
+                      </div>
+                  </fieldset> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

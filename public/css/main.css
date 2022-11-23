@@ -39,13 +39,32 @@ body {
   border-radius: 0;
 }
 
-.btn-postrequest {
+.btn-postrequest1 {
   display: block;
   height: 50px;
   border-radius: 25px;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #be8132, #d3aa38, #be8632);
+  background-image: linear-gradient(to right, #29db29, #a4e5b1, #105e1d);
+  background-size: 200%;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 400px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.btn-postrequest2 {
+  display: block;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right, #436edd, #7e98e9, #12337c);
   background-size: 200%;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
